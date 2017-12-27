@@ -12,17 +12,17 @@ tags: stock
 
 the sp500 data downloaded this way is a big data. Since R is not good at dealing with big data, I splited the download into three parts by the following way
 
-     sp1<-tq_index("sp500")%>%tq_get(get="stock.prices",from="2007-01-01,to="2010-12-31")
-     SP1=filter(sp1,close!='NA')
-     write.csv(sp1,file="c:/sp1.csv")
+     sp01<-tq_index("sp500")%>%tq_get(get="stock.prices",from="2007-01-01,to="2010-12-31")
+     SP1=sp01[complete.cases(sp01),]  #remove all 'NA' values
+     write.csv(sp1,file="c:/sp1.csv",row.names = FALSE) #prevent row names being writen to file
 
-     sp2<-tq_index("sp500")%>%tq_get(get="stock.prices",from="2011-01-01",to="2013-12-31")
-     SP2=filter(sp2,close!='NA')
-     write.csv(sp2,file="c:/sp2.csv")
+     sp02<-tq_index("sp500")%>%tq_get(get="stock.prices",from="2011-01-01",to="2013-12-31")
+     SP2=sp02[complete.cases(sp02),]
+     write.csv(sp2,file="c:/sp2.csv",row.names = FALSE)
 
-     sp3<-tq_index("sp500")%>%tq_get(get="stock.prices",from="2014-01-01",to="2017-12-31")
-     SP3=filter(sp3,close!='NA')
-     write.csv(sp3,file="c:/sp3.csv")
+     sp03<-tq_index("sp500")%>%tq_get(get="stock.prices",from="2014-01-01",to="2017-12-31")
+     SP3=sp03[complete.cases(sp03),]
+     write.csv(sp3,file="c:/sp3.csv",row.names = FALSE)
 
 
 
